@@ -9,6 +9,9 @@
   <!-- Canonical -->
   <link rel="canonical" href="https://homeswithkomal.com/" />
 
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='16' fill='%23106141'/><text y='.9em' font-size='68' x='50%' text-anchor='middle' font-family='Georgia,serif' fill='%23f9f1e8'>K</text></svg>" />
+
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://homeswithkomal.com/" />
@@ -77,8 +80,9 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <!-- Bespoke Serif is a commercial font (Pangram Pangram) not available on Google Fonts.
        Playfair Display is used as the closest free equivalent.
-       To use Bespoke Serif: self-host the woff2 files and update the font-family references. -->
+       To use Bespoke Serif: self-host the woff2 files and update --font-serif. -->
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;1,400;1,600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -115,9 +119,10 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 48px 24px 64px;
+      padding: 48px 24px 80px;
       text-align: center;
       background: var(--cream);
+      position: relative;
     }
 
     .hero-photo {
@@ -149,6 +154,14 @@
       margin-top: 8px;
     }
 
+    .hero-lang {
+      font-size: .75rem;
+      font-weight: 400;
+      color: var(--brown);
+      margin-top: 6px;
+      letter-spacing: .04em;
+    }
+
     .divider {
       width: 40px;
       height: 2px;
@@ -168,12 +181,44 @@
     }
 
     .hero-area {
-      font-size: .8rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 4px 0;
+      font-size: .78rem;
       font-weight: 400;
-      letter-spacing: .1em;
+      letter-spacing: .09em;
       text-transform: uppercase;
       color: var(--brown);
       margin-top: 14px;
+      max-width: 320px;
+    }
+
+    /* ── SCROLL INDICATOR ── */
+    .scroll-hint {
+      position: absolute;
+      bottom: 28px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      color: var(--brown);
+      opacity: .5;
+      animation: bounce 2s ease-in-out infinite;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    .scroll-hint svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50%       { transform: translateX(-50%) translateY(6px); }
     }
 
     /* ── CTA BUTTONS ── */
@@ -234,6 +279,56 @@
       height: 18px;
     }
 
+    .btn-meta {
+      font-size: .72rem;
+      font-weight: 400;
+      opacity: .75;
+      margin-top: 2px;
+      display: block;
+      letter-spacing: 0;
+    }
+
+    .btn-label-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      line-height: 1.2;
+    }
+
+    /* ── PROOF STRIP ── */
+    .proof-strip {
+      background: var(--green);
+      padding: 28px 24px;
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+
+    .proof-item {
+      text-align: center;
+      color: var(--white);
+    }
+
+    .proof-number {
+      font-family: var(--font-serif);
+      font-size: 2rem;
+      font-weight: 600;
+      line-height: 1;
+      display: block;
+    }
+
+    .proof-label {
+      font-size: .72rem;
+      font-weight: 400;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: rgba(249,241,232,.75);
+      margin-top: 6px;
+      display: block;
+      max-width: 120px;
+    }
+
     /* ── ABOUT ── */
     .about {
       background: var(--white);
@@ -272,11 +367,73 @@
 
     .about p + p { margin-top: 14px; }
 
+    /* ── TESTIMONIAL ── */
+    .testimonial {
+      background: var(--cream);
+      padding: 56px 24px;
+      text-align: center;
+    }
+
+    .testimonial-inner {
+      max-width: 560px;
+      margin: 0 auto;
+    }
+
+    .stars {
+      color: var(--brown);
+      font-size: 1.1rem;
+      letter-spacing: .1em;
+      margin-bottom: 8px;
+    }
+
+    .zillow-badge {
+      font-size: .72rem;
+      font-weight: 500;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 24px;
+      display: block;
+    }
+
+    blockquote {
+      font-family: var(--font-serif);
+      font-size: clamp(1rem, 2.5vw, 1.15rem);
+      font-style: italic;
+      font-weight: 400;
+      color: var(--charcoal);
+      line-height: 1.75;
+      margin-bottom: 20px;
+    }
+
+    .testimonial-author {
+      font-size: .8rem;
+      font-weight: 500;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--brown);
+    }
+
+    .testimonial-cta {
+      margin-top: 24px;
+    }
+
+    .testimonial-cta a {
+      font-size: .82rem;
+      color: var(--green);
+      text-decoration: none;
+      border-bottom: 1px solid var(--green-light);
+      padding-bottom: 2px;
+      transition: border-color .15s;
+    }
+
+    .testimonial-cta a:hover { border-color: var(--green); }
+
     /* ── FOOTER ── */
     footer {
       padding: 28px 24px;
       text-align: center;
-      background: var(--cream);
+      background: var(--white);
       border-top: 1px solid #e8e4de;
     }
 
@@ -300,15 +457,22 @@
 
   <!-- HERO -->
   <section class="hero">
-    <img src="headshot.jpg" alt="Komal Sharma — Real Estate Agent at John L. Scott, serving Eastside Seattle" class="hero-photo" width="148" height="148" />
+    <picture>
+      <source srcset="headshot.webp" type="image/webp" />
+      <img src="headshot-small.jpg" alt="Komal Sharma — Real Estate Agent at John L. Scott, serving Eastside Seattle" class="hero-photo" width="148" height="148" />
+    </picture>
 
     <h1 class="hero-name">Komal Sharma</h1>
     <p class="hero-title">Real Estate Agent &nbsp;·&nbsp; Eastside WA</p>
+    <p class="hero-lang">English &amp; Hindi &nbsp;·&nbsp; हिंदी में सेवा उपलब्ध</p>
 
     <div class="divider"></div>
 
-    <p class="hero-tagline">"Where every door leads to new beginnings."</p>
-    <p class="hero-area">Sammamish &nbsp;·&nbsp; Redmond &nbsp;·&nbsp; Woodinville &nbsp;·&nbsp; Issaquah &nbsp;·&nbsp; Bellevue</p>
+    <p class="hero-tagline">Where every door leads to new beginnings.</p>
+    <p class="hero-area">
+      Sammamish &nbsp;·&nbsp; Redmond &nbsp;·&nbsp; Woodinville
+      &nbsp;·&nbsp; Issaquah &nbsp;·&nbsp; Bellevue
+    </p>
 
     <nav class="cta-grid" aria-label="Quick links">
 
@@ -318,7 +482,10 @@
           <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
           <path d="M12 0C5.373 0 0 5.373 0 12c0 2.125.558 4.121 1.535 5.854L.057 23.215a.75.75 0 0 0 .916.932l5.546-1.453A11.943 11.943 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22a9.943 9.943 0 0 1-5.115-1.408l-.363-.218-3.767.987.999-3.671-.236-.374A9.944 9.944 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/>
         </svg>
-        Message me on WhatsApp
+        <span class="btn-label-wrap">
+          <span>Message me on WhatsApp</span>
+          <span class="btn-meta">I typically respond within the hour</span>
+        </span>
       </a>
 
       <!-- Zillow Reviews -->
@@ -329,31 +496,63 @@
         Read client reviews
       </a>
 
-      <!-- Active Listings -->
-      <a href="https://komals.johnlscott.com/home" class="btn btn-outline" target="_blank" rel="noopener">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <path d="M3 9.5L12 3l9 6.5V20a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9.5z"/><path d="M9 21V12h6v9"/>
-        </svg>
-        View active listings
-      </a>
-
     </nav>
+
+    <!-- Scroll indicator -->
+    <a class="scroll-hint" href="#about" aria-label="Scroll down">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="6 9 12 15 18 9"/>
+      </svg>
+    </a>
   </section>
 
+  <!-- PROOF STRIP -->
+  <div class="proof-strip" role="region" aria-label="Results">
+    <div class="proof-item">
+      <span class="proof-number">5★</span>
+      <span class="proof-label">11 reviews on Zillow</span>
+    </div>
+    <div class="proof-item">
+      <span class="proof-number">45</span>
+      <span class="proof-label">days avg. to find a home for buyers</span>
+    </div>
+    <div class="proof-item">
+      <span class="proof-number">2</span>
+      <span class="proof-label">days to receive an offer — even in slow markets</span>
+    </div>
+  </div>
+
   <!-- ABOUT -->
-  <section class="about">
+  <section class="about" id="about">
     <div class="about-inner">
       <p class="section-label">About Komal</p>
       <h2>I joined real estate to make a difference.</h2>
-      <p>After years in corporate HR, I experienced firsthand what it feels like to have an agent who truly shows up — and one who doesn't. That contrast is what brought me into real estate. I give 100% in every transaction, without cutting corners.</p>
-      <p>I specialize in helping first-time buyers, growing families, and move-up sellers across the Greater Seattle area — from Sammamish, Redmond, and Woodinville to Issaquah, Bellevue, and beyond. My approach is simple: patience, honesty, and acting in your best interest. Always.</p>
+      <p>After years in corporate finance and HR, I experienced firsthand what it feels like to have an agent who truly shows up — and one who doesn't. That contrast is what brought me into real estate. I give 100% in every transaction, without cutting corners.</p>
+      <p>I specialize in helping first-time buyers, growing families, and move-up sellers across the Greater Seattle area — from Sammamish, Redmond, and Woodinville to Issaquah, Bellevue, and beyond. I also serve Hindi-speaking clients and understand the unique needs of families navigating the Eastside for the first time.</p>
+      <p>My approach is simple: patience, honesty, and acting in your best interest. Always.</p>
+    </div>
+  </section>
+
+  <!-- TESTIMONIAL -->
+  <section class="testimonial">
+    <div class="testimonial-inner">
+      <p class="section-label">What clients say</p>
+      <div class="stars" aria-label="5 stars">★★★★★</div>
+      <span class="zillow-badge">5.0 · 11 reviews on Zillow</span>
+      <blockquote>
+        "Within just two days of listing, we received a compelling offer. What truly set Komal apart was her unwavering support throughout — from coordinating staging and painting to managing carpet updates. She remained fully involved every step of the way, ensuring we never felt overwhelmed or uncertain. Her professionalism, dedication, and integrity made the entire experience smooth and stress-free."
+      </blockquote>
+      <p class="testimonial-author">— Verified seller, Sammamish</p>
+      <p class="testimonial-cta">
+        <a href="https://www.zillow.com/profile/KomalSh" target="_blank" rel="noopener">Read all 11 reviews on Zillow</a>
+      </p>
     </div>
   </section>
 
   <!-- FOOTER -->
   <footer>
     <p>Komal Sharma &nbsp;·&nbsp; Real Estate Agent &nbsp;·&nbsp; <a href="https://komals.johnlscott.com/home" target="_blank" rel="noopener">John L. Scott Real Estate</a></p>
-    <p style="margin-top:6px;">+1 425-414-0176 &nbsp;·&nbsp; Sammamish, WA</p>
+    <p style="margin-top:6px;"><a href="tel:+14254140176">+1 425-414-0176</a> &nbsp;·&nbsp; Sammamish, WA</p>
   </footer>
 
 </body>
